@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"encoding/json"
 	"io"
-	"log"
 	"os"
 	"os/exec"
 	"regexp"
@@ -260,7 +259,6 @@ func (j *CheckClientIpJob) updateInboundClientIps(inboundClientIps *model.Inboun
 	shouldCleanLog := false
 	j.disAllowedIps = []string{}
 
-
 	for _, client := range clients {
 		if client.Email == clientEmail {
 			limitIp := client.LimitIP
@@ -270,8 +268,8 @@ func (j *CheckClientIpJob) updateInboundClientIps(inboundClientIps *model.Inboun
 
 				if limitIp < len(ips) {
 					logger.Warningf("User '%s' exceeded IP limit (%d > %d). Disabling inbound.", clientEmail, len(ips), limitIp)
-					inbound.Enable = false 
-					break 
+					inbound.Enable = false
+					break
 				}
 			}
 		}
